@@ -1,0 +1,28 @@
+.card-title-2{
+font-size: medium;
+}
+#card-client-name{
+    font-style: italic;
+    font-weight: bold;
+}
+#card-department{
+    font-style: italic;
+    color:grey;
+}
+#card-person-name{
+    font-style: italic;
+    font-weight: bold;
+}
+.badge{
+    font-size: 1.75em;
+    font-family: "Calibri";
+
+}
+.h5-style-tasks{
+    font-family: "Calibri";
+    color:grey;
+    font-size: small;
+}
+body {
+    background-color: #f4f6f8;
+}

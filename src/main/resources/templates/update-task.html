@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizare sarcină</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet" >
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #051367;">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">CRM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="toggleMobileMenu">
+                <ul class="navbar-nav text-center" >
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" th:href="@{/home}" >Acasă</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/tasks}" style="color:white ; font-weight:bold">Sarcini</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/clients}">Clienți</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/sales}">Vânzări</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous" async></script>
+</head>
+<body>
+
+
+<div class="container">
+    <br style="line-height:20px">
+    <h5>Editare sarcină</h5>
+    <hr>
+    <form th:action="@{updateTask/save}" method="POST">
+        <h5>Detalii sarcina:</h5>
+        <br>
+        <h6>Nume</h6>
+        <input type="text" th:value="${task.name}" name="name" placeholder="Adaugă nume" class="form-control col-4 mb-4" required>
+        <h6>Descriere</h6>
+        <input type="text" th:value="${task.description}" name="description" placeholder="Adaugă descriere" class="form-control col-4 mb-4" required>
+        <h6>Data limită</h6>
+        <input type="date" th:value="${task.deadline}" name="deadline" placeholder="Adaugă data limita" class="form-control col-4 mb-4" required>
+        <h6>Status</h6>
+        <select class="form-select" aria-label="Default select example" th:value="${task.status}" name="status" required>
+            <option th:each="status : ${T(com.example.proiectlicenta.entity.Status).values()}"
+                    th:value="${status}" th:text="${status}"></option>
+        </select>
+        <br>
+        <h6>Responsabil</h6>
+        <select class="form-select" aria-label="Default select example" value="id" name="id" required>
+            <option th:each="employee: ${employees}" th:value="${employee.id}"
+                    th:text="${employee.firstName}+' '+${employee.lastName}"></option>
+
+        </select>
+        <br>
+        <input type="hidden" th:value="${task.id}" name="taskId"/>
+        <br>
+        <button class="btn btn-primary" type="submit" style=" background-color:#2D31FA">Salvează</button>
+
+    </form>
+</div>
+</body>
+</html>
